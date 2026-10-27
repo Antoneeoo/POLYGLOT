@@ -1,0 +1,145 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User account profile document storing user preferences and metadata",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The Firebase Auth UID of the user",
+          "maxLength": 128
+        },
+        "displayName": {
+          "type": "string",
+          "description": "User display name",
+          "maxLength": 100
+        },
+        "email": {
+          "type": "string",
+          "description": "User email address",
+          "maxLength": 150
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "Avatar photo URL",
+          "maxLength": 500
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp when account profile was created"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Timestamp when account profile was last updated"
+        }
+      },
+      "required": ["userId", "email", "createdAt", "updatedAt"]
+    },
+    "SavedMessage": {
+      "title": "SavedMessage",
+      "description": "Saved ASL translated message associated with a Google Contact or recipient",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Document unique ID",
+          "maxLength": 128
+        },
+        "userId": {
+          "type": "string",
+          "description": "Owner user UID",
+          "maxLength": 128
+        },
+        "recipientName": {
+          "type": "string",
+          "description": "Name of contact or recipient",
+          "maxLength": 120
+        },
+        "recipientEmail": {
+          "type": "string",
+          "description": "Email of contact or recipient",
+          "maxLength": 150
+        },
+        "originalText": {
+          "type": "string",
+          "description": "Original text translated to ASL",
+          "maxLength": 1000
+        },
+        "aslGloss": {
+          "type": "string",
+          "description": "ASL Gloss notation stream",
+          "maxLength": 1000
+        },
+        "category": {
+          "type": "string",
+          "description": "Category or tag",
+          "maxLength": 50
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Creation timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Last update timestamp"
+        }
+      },
+      "required": ["id", "userId", "recipientName", "originalText", "aslGloss", "createdAt", "updatedAt"]
+    },
+    "CustomSign": {
+      "title": "CustomSign",
+      "description": "User-trained ASL gesture record stored in Firestore",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique sign ID",
+          "maxLength": 128
+        },
+        "userId": {
+          "type": "string",
+          "description": "Owner user UID",
+          "maxLength": 128
+        },
+        "gloss": {
+          "type": "string",
+          "description": "ASL Gloss name",
+          "maxLength": 80
+        },
+        "sampleCount": {
+          "type": "number",
+          "description": "Number of samples trained"
+        },
+        "notes": {
+          "type": "string",
+          "description": "User notes or description",
+          "maxLength": 500
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Creation timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Last update timestamp"
+        }
+      },
+      "required": ["id", "userId", "gloss", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile collection isolated by user UID"
+    },
+    "/users/{userId}/savedMessages/{messageId}": {
+      "schema": "SavedMessage",
+      "description": "Saved ASL messages and contact communications owned by the user"
+    },
+    "/users/{userId}/customSigns/{signId}": {
+      "schema": "CustomSign",
+      "description": "Custom trained signs owned by the user"
+    }
+  }
+}
