@@ -1,12 +1,13 @@
 {
-  "projectId": "gen-lang-client-0822213961",
-  "appId": "1:1094932723212:web:405962513e7492e802a029",
-  "apiKey": "AIzaSyASsE6TqzsuXwa22mqP9vqP9DL-0yeljuY",
-  "authDomain": "gen-lang-client-0822213961.firebaseapp.com",
-  "firestoreDatabaseId": "ai-studio-polyglotliveaslm-a3f9c1a1-d565-42b1-a056-11e76227daf1",
-  "storageBucket": "gen-lang-client-0822213961.firebasestorage.app",
-  "messagingSenderId": "1094932723212",
+  "_comment": "This file is intentionally blank after the credential leak. Firebase settings must be provided via environment variables.",
+  "projectId": "",
+  "appId": "",
+  "apiKey": "",
+  "authDomain": "",
+  "firestoreDatabaseId": "",
+  "storageBucket": "",
+  "messagingSenderId": "",
   "measurementId": "",
-  "oAuthClientId": "1094932723212-0ntv4jagkfit429ub43dulgfs1iqlsnv.apps.googleusercontent.com",
+  "oAuthClientId": "",
   "recaptchaSiteKey": ""
 }
