@@ -1,4 +1,5 @@
 import express, { Request, Response } from 'express';
+import { rateLimit } from 'express-rate-limit';
 import { createServer as createViteServer } from 'vite';
 import { GoogleGenAI } from '@google/genai';
 import dotenv from 'dotenv';
@@ -250,9 +251,18 @@ async function startServer() {
     app.use(vite.middlewares);
   } else {
     app.use(express.static(path.resolve(__dirname, 'dist')));
-    app.get('*', (_req, res) => {
-      res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
-    });
+    app.get(
+      '*',
+      rateLimit({
+        windowMs: 15 * 60 * 1000,
+        limit: 100,
+        standardHeaders: true,
+        legacyHeaders: false
+      }),
+      (_req, res) => {
+        res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+      }
+    );
   }
 
   app.listen(PORT, '0.0.0.0', () => {
